@@ -3,17 +3,9 @@ import time
 import logging
 
 class SerialObject:
-    """
-    Allow to transmit data to a Serial Device like Arduino.
-    Example send $255255000
-    """
+   
     def __init__(self, portNo, baudRate=9600, digits=1):
-        """
-        Initialize the serial object.
-        :param portNo: Port Number.
-        :param baudRate: Baud Rate.
-        :param digits: Number of digits per value to send
-        """
+       
         self.portNo = portNo
         self.baudRate = baudRate
         self.digits = digits
@@ -24,10 +16,7 @@ class SerialObject:
             logging.warning("Serial Device Not Connected")
 
     def sendData(self, data):
-        """
-        Send data to the Serial device
-        :param data: list of values to send
-        """
+        
         myString = "$"
         for d in data:
             myString += str(int(d)).zfill(self.digits)
@@ -38,10 +27,7 @@ class SerialObject:
             return False
 
     def getData(self):
-        """
-        :param numOfVals: number of vals to retrieve
-        :return: list of data received
-        """
+       
         data = self.ser.readline()
         data = data.decode("utf-8")
         data = data.split('#')
